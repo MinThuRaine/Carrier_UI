@@ -1,0 +1,13 @@
+<div>
+
+  <span> Way Owner - </span> <a [routerLink]="['/profile', way.owner.username]" style = "text-decoration: none;">
+    {{ way.owner.username }}
+  </a>
+  <span>| Created Date - </span>
+  <span>
+    {{ way.createdAt | date: 'longDate' }}  |
+  </span>
+
+  <ng-content></ng-content>
+
+</div>

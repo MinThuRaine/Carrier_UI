@@ -1,0 +1,70 @@
+<p-card header="New Way" [style]="{'margin-left': '1rem',
+ 'margin-right': '1rem', 'margin-top': '1rem', 'margin-bottom': '2rem'}">
+ <div class="container page">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 col-xs-12">
+
+
+      <form [formGroup]="wayForm">
+        <fieldset [disabled]="isSubmitting">
+          <fieldset class="form-group">
+            <div class="mb-3 row">
+              <div class="col-sm-10">
+                <input class="form-control "
+                formControlName="title" id="waytitle"
+                type="text"
+                placeholder="Way Title" />
+              </div>
+           </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <div class="mb-3 row">
+              <div class="col-sm-10">
+                <input class="form-control "
+                formControlName="description" id="waytitle"
+                type="text"
+                placeholder="What's this way about?"  />
+              </div>
+           </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <div class="mb-3 row">
+              <div class="col-sm-10">
+                <textarea class="form-control" formControlName="body" rows="8" 
+                placeholder="Write your way information.">
+                      </textarea>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-group">
+            <div class="mb-3 row">
+              <div class="col-sm-10">
+                <input class="form-control" type="text" placeholder="Enter tags" [formControl]="tagField"
+                  (keyup.enter)="addTag()" />
+          
+                <div class="tag-list">
+                  <span *ngFor="let tag of way.tagList; trackBy: trackByFn" class="tag-default tag-pill">
+                    <i class="ion-close-round" (click)="removeTag(tag)"></i>
+                    {{ tag }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <button class="btn btn-lg pull-xs-right btn-primary" type="button" (click)="submitForm()">
+            Publish Way
+          </button>
+
+        </fieldset>
+      </form>
+
+    </div>
+  </div>
+</div>
+</p-card>
+
+  

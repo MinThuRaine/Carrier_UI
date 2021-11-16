@@ -1,0 +1,68 @@
+
+<p-card header="Setting" [style]="{'margin-left': '1rem',
+'margin-right': '1rem', 'margin-top': '1rem', 'margin-bottom': '2rem'}">
+  <div class="container page">
+    <div class="row">
+      <div class="col-md-10 offset-md-1 col-xs-12">
+
+        <form [formGroup]="settingsForm" (ngSubmit)="submitForm()">
+          <fieldset [disabled]="isSubmitting">
+            <fieldset class="form-group">
+              <div class="mb-3 row">
+                <div class="col-sm-10">
+                  <input class="form-control" type="text" placeholder="URL of profile picture" formControlName="image" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <div class="mb-3 row">
+                <div class="col-sm-10">
+                  <input class="form-control " type="text" placeholder="Username" formControlName="username" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <div class="mb-3 row">
+                <div class="col-sm-10">
+                  <textarea class="form-control" rows="8" placeholder="Short bio about you" formControlName="bio">
+                          </textarea>
+                </div>
+                </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <div class="mb-3 row">
+                <div class="col-sm-10">
+                  <input class="form-control " type="email" placeholder="Email" formControlName="email" />
+                </div>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-group">
+              <div class="mb-3 row">
+                <div class="col-sm-10">
+                  <input class="form-control " type="password" placeholder="New Password"
+                    formControlName="password" />
+                </div>
+              </div>
+            </fieldset>
+
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit">
+              Update Settings
+            </button>
+            
+            <hr />
+            
+            <button class="btn btn-outline-danger" (click)="logout()">
+              Or click here to logout.
+            </button>
+          </fieldset>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</p-card>
+

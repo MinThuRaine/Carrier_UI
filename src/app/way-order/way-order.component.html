@@ -1,0 +1,89 @@
+<div class="way-order-page">
+    <div class="banner">
+      <div class="container">
+        <h1>{{ way.title }}</h1>
+    
+        <app-way-metadata [way]="way">
+      
+          <span [hidden]="!canModify">
+            <a class="btn btn-sm btn-outline-secondary" [routerLink]="['/way', way.slug]">
+              <i class="ion-edit"></i> Edit Way
+            </a>
+    
+            <button class="btn btn-sm btn-outline-danger" [ngClass]="{disabled: isDeleting}" (click)="deleteWay()">
+              <i class="ion-trash-a"></i> Delete Way
+            </button>
+          </span>
+    
+          <span [hidden]="canModify">
+             <app-follow-button [profile]="way.owner" (toggle)="onToggleFollowing($event)">
+            </app-follow-button>  
+    
+             <app-request-button [way]="way" (toggle)="onToggleRequest($event)">
+              {{ way.requested ?'Unrequest':'Request' }} Way 
+            </app-request-button>
+          </span>
+    
+        </app-way-metadata>
+      </div>
+    </div>
+  
+    <div class="container page">
+  
+      <div class="row way-content">
+        <div class="col-md-12">
+  
+          <div [innerHTML]="way.body | markdown"></div>
+  
+          <ul class="tag-list">
+            <li *ngFor="let tag of way.tagList; trackBy: trackByFn"
+              class="tag-default tag-pill tag-outline">
+              {{ tag }}
+            </li>
+          </ul>
+        </div>
+      </div>
+  
+      <hr />
+  
+      
+  
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+  
+          <div class="col-md-8">
+            <!-- <app-list-errors [errors]="commentFormErrors"></app-list-errors> -->
+            <form class="card comment-form" (ngSubmit)="addComment()">
+              <fieldset [disabled]="isSubmitting">
+                <div class="card-block">
+                  <textarea class="form-control"
+                    placeholder="Write a comment..."
+                    rows="3"
+                    [formControl]="commentControl"
+                  ></textarea>
+                </div>
+                <div class="card-footer">
+                  <button class="btn btn-sm btn-primary" type="submit">
+                   Comment
+                  </button>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+  
+          <div *showAuthed="true">
+            <a [routerLink]="['/login']">Sign in</a> or <a [routerLink]="['/register']">sign up</a> to add comments on this article.
+          </div>
+  
+          <app-way-order-comment
+            *ngFor="let comment of comments; trackBy: trackByFn"
+            [comment]="comment"
+            (deleteComment)="onDeleteComment(comment)">
+          </app-way-order-comment>
+  
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

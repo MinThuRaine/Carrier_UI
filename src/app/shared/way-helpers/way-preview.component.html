@@ -1,0 +1,31 @@
+
+
+<div class="container" style="margin-top: 0.5%;">
+  <div class="card  text-center">
+    <div class="card-body">
+      <h5 class="card-title"><a [routerLink]="['/way-order', way.slug]" > {{ way.title }} </a></h5>
+      
+      <app-way-metadata [way]="way">
+        <app-request-button
+          [way]="way"
+          (toggle)="onToggleRequest($event)"
+          class="pull-xs-right">
+          {{way.requestCount}}
+        </app-request-button>
+      </app-way-metadata>
+      
+      <p>{{ way.description }}</p>
+      
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline" style=" display:inline-block;  "
+          *ngFor="let tag of way.tagList; trackBy: trackByFn">
+          {{ tag }}
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+ 
+  
+

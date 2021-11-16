@@ -1,0 +1,31 @@
+<!-- <div class="card">
+    <div class="card-block">
+      <p class="card-text">
+        {{ comment.body }}
+      </p>
+    </div>
+    <div class="card-footer">
+
+      &nbsp;
+  
+    </div>
+  </div>
+  <p-card header="New Way" [style]="{'margin-left': '1rem',
+ 'margin-right': '1rem', 'margin-top': '1rem', 'margin-bottom': '2rem'}"> -->
+
+  <p-card header="" [style]="{'width': '31rem', 'margin-bottom': '2em'}">
+
+     {{ comment.body }}
+     <ng-template pTemplate="footer">
+      <a class="comment-author" [routerLink]="['/profile', comment.user.username]">
+        {{ comment.user.username }}
+      </a>
+      <span class="date-posted">
+        {{ comment.createdAt | date: 'longDate' }}
+      </span>
+      <span class="mod-options" [hidden]="!canModify">
+          <button pButton pRipple type="button" label="" (click)="deleteClicked()" class="p-button-text"> DELETE COMMENT </button> 
+      </span>
+     </ng-template>
+
+</p-card>
